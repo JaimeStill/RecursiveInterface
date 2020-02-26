@@ -1,0 +1,24 @@
+<mat-toolbar>Home</mat-toolbar>
+<ng-template #loading>
+  <mat-progress-bar mode="indeterminate"
+                    color="accent"></mat-progress-bar>
+</ng-template>
+<section fxLayout="column"
+         fxLayoutAlign="start stretch">
+  <section fxLayout="row"
+           fxLayoutAlign="start center"
+           class="container">
+    <mat-form-field fxFlex>
+      <mat-label>Directory</mat-label>
+      <input matInput
+             #directory
+             (keyup.enter)="loadDirectory(directory.value)" />
+    </mat-form-field>
+    <button mat-stroked-button
+            color="primary"
+            (click)="loadDirectory(directory.value)">Load Directory</button>
+  </section>
+</section>
+<ng-container *ngIf="fileSystem.folder$ | async as folder else loading">
+  <folder [folder]="folder"></folder>
+</ng-container>

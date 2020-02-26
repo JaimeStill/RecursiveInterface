@@ -1,0 +1,11 @@
+<section class="background card container"
+         fxLayout="column"
+         fxLayoutAlign="start stretch">
+  <p class="mat-body-strong">{{file.name}}</p>
+  <section fxLayout="row"
+           fxLayoutAlign="space-between center"
+           class="mat-caption">
+    <p>{{file.length | bytes}}</p>
+    <p>{{file.creationTime | date:'dd MMM yyyy'}}</p>
+  </section>
+</section>

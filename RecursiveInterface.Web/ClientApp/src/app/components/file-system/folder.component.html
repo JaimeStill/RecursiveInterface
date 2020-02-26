@@ -1,0 +1,33 @@
+<section fxLayout="column"
+         fxLayoutAlign="start start">
+  <section fxLayout="row"
+           fxLayoutAlign="start center">
+    <p class="mat-body-strong"
+       fxFlex>{{folder.path}}</p>
+    <button mat-icon-button
+            (click)="toggleExpanded()">
+      <mat-icon *ngIf="expanded"
+                matTooltip="Collapse">keyboard_arrow_down</mat-icon>
+      <mat-icon *ngIf="!(expanded)"
+                matTooltip="Expand">keyboard_arrow_right</mat-icon>
+    </button>
+  </section>
+  <ng-container *ngIf="expanded">
+    <mat-progress-bar *ngIf="loading"
+                      mode="indeterminate"
+                      color="accent"></mat-progress-bar>
+    <section fxLayout="column"
+             fxLayoutAlign="start stretch"
+             *ngIf="folder.files?.length > 0">
+      <file *ngFor="let f of folder.files"
+            [file]="f"></file>
+    </section>
+    <section fxLayout="column"
+             fxLayoutAlign="start stretch"
+             *ngIf="folder.folders?.length > 0">
+      <folder *ngFor="let f of folder.folders"
+              [folder]="f"></folder>
+    </section>
+    <p *ngIf="!(folder.files?.length > 0) && !(folder.folders?.length > 0)">Folder is Empty</p>
+  </ng-container>
+</section>
